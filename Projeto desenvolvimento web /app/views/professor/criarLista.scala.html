@@ -1,0 +1,37 @@
+@(formulario : Form[Lista])
+@import helper._
+
+<style>
+
+.formulario{
+  margin-left: 400px;
+  margin-top:90px;
+  background-color:  #03a9f4  ;
+  width: 350px;
+  height: 200px;
+  padding: 80px;
+  border-radius: 10px;
+  font-size: 17px;
+
+}
+.formulario input{
+padding: 5px;
+}
+
+
+
+</style>
+
+@main("Criar Lista") {
+  @form(routes.ListaController.salvarLista){
+
+  <!--<h2> Criar nova lista</h2>-->
+  <div class="formulario">
+
+      @inputText(formulario("titulo"),'_showConstraints ->false,'_label ->"Titulo:")
+      @inputText(formulario("assunto"),'_showConstraints ->false,'_label ->"Assunto:")
+
+    <input  type="submit" value="Criar"/>
+  </div>
+  }
+}

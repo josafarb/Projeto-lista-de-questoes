@@ -1,0 +1,88 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+
+
+#Pagina de login, primeira pagina do sistema
+#GET    /                                   controllers.SegurancaController.gerarTelaLogin
+
+
+#Controle que faz  autenticação e autorização do sistema
+#GET     /login                             controllers.SegurancaController.login
+
+#logout
+GET   /logout                              controllers.SegurancaController.logout
+
+#Pagina inicial  do professor
+GET     /indexProfessor                    controllers.ProfessorController.gerarIndexProfessor
+
+#Pagina criar lista
+GET     /criarLista                       controllers.ListaController.gerarPaginaCriarLista
+
+
+#Salvar formulario
+POST    /criarLista                       controllers.ListaController.salvarLista
+
+
+
+
+#Editar lista
+GET   /editarLista/:id                   controllers.ListaController.editarDadosLista(id:Long)
+
+
+#Salvar alterações
+POST   /salvarAtualizacaoLista/:id       controllers.ListaController.salvarAtualizacaoLista(id:Long)
+
+
+#Pagina questoes
+GET  /questoes/:id                      controllers.QuestaoController.gerarPaginaQuestao(id:Long)
+
+#Adicionar questao
+GET  /adicionarQuestao/:id                    controllers.QuestaoController.gerarPaginaAdicionarQuestao(id:Long)
+
+
+#Salvar questao
+POST /salvarQuestao/:id                       controllers.QuestaoController.salvarQuestao(id:Long)
+
+
+
+
+#Pagina inicial do aluno
+GET     /indexAluno                            controllers.AlunoController.gerarIndexAluno
+
+
+#Pagina questoes aluno
+GET  /questoesAluno/:id                       controllers.QuestaoController.gerarPaginaQuestaoAluno(id:Long)
+
+
+
+#gerar pagina  adicionar responder
+GET  /adicionarResposta/:id                    controllers.QuestaoController.gerarPaginaAdicionarResposta(id:Long)
+
+#Pagina salvar resposta aluno
+POST  /salvarResposta/:id                      controllers.QuestaoController.salvarRespostaAluno(id:Long)
+
+
+
+#login
+GET /                                        controllers.SegurancaController.gerarTelaLogin
+GET /login                                   controllers.SegurancaController.gerarTelaLogin
+POST /login                                  controllers.SegurancaController.acessar
+
+#Listar Professores TESTE
+#GET     /listarProfessor                    controllers.ProfessorController.listaProfessores
+
+
+
+# An example controller showing how to use dependency injection
+GET     /count                      controllers.CountController.count
+# An example controller showing how to write asynchronous code
+GET     /message                    controllers.AsyncController.message
+
+#aprendendo
+GET    /home/sobre                   controllers.HomeController.sobre
+GET   /home/primeiraPagina           controllers.HomeController.primeira
+GET   /home/primeiraPagina/sair      controllers.HomeController.sair
+#ate aqui
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file                controllers.Assets.versioned(path="/public", file: Asset)

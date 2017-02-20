@@ -1,0 +1,42 @@
+@(id:Long , formulario :Form[Lista])
+
+@import helper._
+
+<style>
+
+.formulario{
+  margin-left: 400px;
+  margin-top:90px;
+  background-color:  #03a9f4  ;
+  width: 350px;
+  height: 200px;
+  padding: 80px;
+  border-radius: 10px;
+  font-size: 17px;
+
+}
+.formulario input{
+padding: 5px;
+}
+h2{
+  margin-left: 500px;
+}
+
+
+</style>
+
+
+
+@main("Editar lista"){
+  <h2>Editar Lista</h2>
+  @form(routes.ListaController.salvarAtualizacaoLista(id)){
+  <div class="formulario">
+        @inputText(formulario("titulo"),'_showConstraints ->false,'_label ->"Titulo:")
+        @inputText(formulario("assunto"),'_showConstraints ->false,'_label ->"Assunto:")
+
+        <input type="hidden" name="id" value="@id">
+        <input type="submit" value="Salvar" />
+  </div>
+  }
+
+}

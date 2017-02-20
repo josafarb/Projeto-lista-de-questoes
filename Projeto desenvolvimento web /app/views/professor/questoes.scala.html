@@ -1,0 +1,93 @@
+@(idLista:Long, questao :List[Questao])
+
+@import helper._
+
+<style>
+  .mensagem{
+    background: #00c853;
+    height: 50px;
+    /*margin-top:-19px;  */
+    margin-left: -8px;
+    color: white;
+    text-align: center;
+  }
+
+  .adicionar{
+    text-decoration: none;
+    background-color:#1976d2;
+    color:white;
+    height: 20px;
+    border-radius:5px;
+    font-size: 18px;
+    margin-left: 800px;
+  }
+  h2{
+    margin-left: 500px;
+  }
+</style>
+
+@main("Questões"){
+  @if(flash.containsKey("questaoAdicionada")){
+  <div class="mensagem">
+    <h3 id="textoMensagem"> @flash.get("questaoAdicionada")</h3>
+  </div>
+}
+  <h2>Questões</h2>
+
+  <style>
+    table {
+        border-collapse: collapse;
+        width: 50%;
+        margin:50px auto;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    tr:hover{background-color:#f5f5f5}
+    #cadastrar{
+      text-decoration: none;
+      background-color:#1976d2;
+      color:white;
+      height: 20px;
+      border-radius:5px;
+      font-size: 18px;
+      margin-left: 800px;
+    }
+
+    .editar{
+      text-decoration: none;
+      background-color: orange;
+      padding:5px;
+      border-radius:5px;
+      color:white;
+    }
+    .titulo{
+      text-decoration: none;
+      color:black;
+    }
+    </style>
+
+  <table>
+  <tr>
+    <th>Enunciado</th>
+    <th>Valor</th>
+    <th>Gabarito</th>
+  </tr>
+  @for(lista <- questao){
+    <tr>
+    <td>@lista.enunciado</td>
+    <td>@lista.valor</td>
+    <td>@lista.gabarito</td>
+
+    </tr>
+  }
+  </table>
+
+
+
+
+  <a class="adicionar" href="@routes.QuestaoController.gerarPaginaAdicionarQuestao(idLista)">Adicionar questão</a>
+
+}

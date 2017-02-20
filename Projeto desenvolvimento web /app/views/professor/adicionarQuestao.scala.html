@@ -1,0 +1,39 @@
+@(id:Long , formulario :Form[Questao])
+
+@import helper._
+
+<style>
+
+.formulario{
+  margin-left: 400px;
+  margin-top:90px;
+  background-color:  #03a9f4  ;
+  width: 350px;
+  height: 250px;
+  padding: 80px;
+  border-radius: 10px;
+  font-size: 17px;
+
+}
+
+
+h2{
+  margin-left: 500px;
+}
+
+</style>
+
+@main("Adicionar questão"){
+  <h2>Adicionar questão</h2>
+  @form(routes.QuestaoController.salvarQuestao(id)){
+  <div class="formulario">
+        @textarea(formulario("enunciado"), args = 'rows -> 3, 'cols -> 32,'_showConstraints ->false,'_label ->"Enunciado :")
+        @inputText(formulario("gabarito"),'_showConstraints ->false,'_label ->"Gabarito:")
+        @inputText(formulario("valor"),'_showConstraints ->false,'_label ->"Valor:")
+
+
+        <input type="submit" value="Salvar" />
+  </div>
+  }
+
+}

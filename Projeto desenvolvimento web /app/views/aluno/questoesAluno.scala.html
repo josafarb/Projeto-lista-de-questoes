@@ -1,0 +1,124 @@
+@(idLista:Long, questao :List[Questao],resposta :List[Resposta],notas :List[Double],notaAluno:Double)
+
+
+@import helper._
+
+<style>
+  .mensagem{
+    background: #00c853;
+    height: 50px;
+    margin-left: -8px;
+    color: white;
+    text-align: center;
+  }
+
+  .adicionar{
+    text-decoration: none;
+    background-color:#1976d2;
+    color:white;
+    height: 20px;
+    border-radius:5px;
+    font-size: 18px;
+    margin-left: 800px;
+  }
+  h2{
+    margin-left: 500px;
+  }
+</style>
+
+@main("Questões"){
+  @if(flash.containsKey("questaoAdicionada")){
+  <div class="mensagem">
+    <h3 id="textoMensagem"> @flash.get("questaoAdicionada")</h3>
+  </div>
+}
+  <h2 class="tituloPagina">Questões </h2>
+  <br>
+  <h2 id="nota">Nota : @notaAluno</h2>
+
+  <style>
+    table {
+        border-collapse: collapse;
+        width: 50%;
+        margin:50px auto;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    tr:hover{background-color:#f5f5f5}
+    #cadastrar{
+      text-decoration: none;
+      background-color:#1976d2;
+      color:white;
+      height: 20px;
+      border-radius:5px;
+      font-size: 18px;
+      margin-left: 800px;
+    }
+
+    .editar{
+      text-decoration: none;
+      background-color: orange;
+      padding:5px;
+      border-radius:5px;
+      color:white;
+    }
+    .titulo{
+      text-decoration: none;
+      color:black;
+    }
+
+    .tituloTabela{
+        font-weight: initial;
+        font-size: 17px;
+         color:#0277bd;
+      }
+    .responder{
+        text-decoration: none;
+        background-color: #00c853;
+        padding:5px;
+        border-radius:5px;
+        color: white;
+      }
+
+      #nota{
+        margin-left: 325px;
+        font-weight: initial;
+        font-size: 20px;
+        margin-bottom: 50px;
+        color : red;
+    }
+
+
+    </style>
+
+  <table>
+  <tr>
+    <th class="tituloTabela">Enunciado</th>
+    <th class="tituloTabela">Valor da questão</th>
+    <th class="tituloTabela">Resposta</th>
+    <th class="tituloTabela">Resultado</th>
+    <th>  </th>
+  </tr>
+
+
+  @for(( ((questao, resposta), nota)) <-(questao).zip(resposta).zip(notas)){
+    <tr>
+        <td>@questao.enunciado</td>
+        <td>@questao.valor pontos</td>
+        <td>@resposta.resposta</td>
+        <td>@nota</td>
+         <td><a class="responder" href="@routes.QuestaoController.gerarPaginaAdicionarResposta(questao.id)">Responder</a></td>
+
+    </tr>
+
+  }
+
+
+
+  </table>
+
+
+}

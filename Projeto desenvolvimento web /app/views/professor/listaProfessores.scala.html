@@ -1,0 +1,18 @@
+@(professores : List[Professor])
+
+
+@main("Lista dos profesores"){
+      <table class="table table-striped table-bordered" id="example"
+    cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tfoot>
+    @for(professor <- professores) {
+    <tr>
+    <th>
+    @professor.nome
+    </a>
+    </th>
+    </tr>
+    }
+    </tfoot>
+    </table>
+}

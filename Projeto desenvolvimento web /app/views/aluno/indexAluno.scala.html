@@ -1,0 +1,45 @@
+@(listas : List[Lista])
+
+@main("Home aluno") {
+
+  <style>
+    table {
+        border-collapse: collapse;
+        width: 50%;
+        margin: 10px auto;
+
+
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    tr:hover{
+      background-color:#f5f5f5;
+    }
+    .titulo {
+      text-decoration: none;
+      color:green;
+    }
+    
+    </style>
+
+  <table>
+  <tr>
+    <th>Lista</th>
+    <th>Assunto</th>
+    <th>Professor</th>
+  </tr>
+  @for(lista <- listas){
+    <tr>
+    <td><a class="titulo" href="@routes.QuestaoController.gerarPaginaQuestaoAluno(lista.id)">@lista.titulo</a></td>
+    <td>@lista.assunto</td>
+    <td>@lista.professor.nome</td>
+
+    </tr>
+  }
+  </table>
+  <label>@session.get("tipo")</label>
+
+}

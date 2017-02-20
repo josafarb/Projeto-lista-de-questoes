@@ -1,0 +1,106 @@
+@(listas : List[Lista])
+
+<style>
+  .mensagem{
+    background: #00c853;
+    height: 50px;
+    /*margin-top:-19px;  */
+    margin-left: -8px;
+    color: white;
+    text-align: center;
+  }
+
+  .mensagem2{
+    background: orange;
+    height: 50px;
+    /*margin-top:-19px;  */
+    margin-left: -8px;
+    color: white;
+    text-align: center;
+  }
+
+
+
+  #textoMensagem{
+    color:white;
+
+  }
+</style>
+
+
+@main("Home Professor") {
+  @if(flash.containsKey("sucess")){
+  <div class="mensagem">
+    <h3 id="textoMensagem"> @flash.get("sucess")</h3>
+  </div>
+}
+
+ @if(flash.containsKey("alteracao")){
+  <div class="mensagem2">
+    <h3 id="textoMensagem"> @flash.get("alteracao")</h3>
+  </div>
+}
+
+  <!--<h1> Inicio tela professor </h1>
+  <a href="@routes.HomeController.sobre">clica aii "teste"</a>
+  <br/> !-->
+  <style>
+    table {
+        border-collapse: collapse;
+        width: 50%;
+        margin:50px auto;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    tr:hover{background-color:#f5f5f5}
+    #cadastrar{
+      text-decoration: none;
+      background-color:#1976d2;
+      color:white;
+      height: 20px;
+      border-radius:5px;
+      font-size: 18px;
+      margin-left: 800px;
+    }
+
+    .editar{
+      text-decoration: none;
+      background-color: orange;
+      padding:5px;
+      border-radius:5px;
+      color:white;
+    }
+    .titulo{
+      text-decoration: none;
+      color:black;
+    }
+    </style>
+
+  <table>
+  <tr>
+    <th>Lista</th>
+    <th>Assunto</th>
+    <th>   </th>
+  </tr>
+  @for(lista <- listas){
+    <tr>
+    <td><a class="titulo" href="@routes.QuestaoController.gerarPaginaQuestao(lista.id)">@lista.titulo</a></td>
+
+    <td>@lista.assunto</td>
+  
+    <td>
+           <a class="editar" href="@routes.ListaController.editarDadosLista(lista.id)">Editar</a>
+
+    </tr>
+  }
+  </table>
+
+  <br/>
+  <a  id="cadastrar" href="@routes.ListaController.gerarPaginaCriarLista">Nova lista</a>
+  <br>
+  <!--<label>@session.get("tipo");</label> -->
+
+}
